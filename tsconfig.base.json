@@ -1,18 +1,12 @@
 {
+  "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["esnext", "dom"],
-    "module": "esnext",
-    "types": ["jest", "node"],
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    // "noUncheckedIndexedAccess": true
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "types": ["node", "jest"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "jsx": "react",
-    "declaration": true,
-    "declarationMap": true,
     "paths": {
       "@charcoal-ui/*": ["./packages/*/src"]
     }
