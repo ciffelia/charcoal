@@ -7156,6 +7156,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tsconfig/strictest@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@tsconfig/strictest@npm:1.0.1"
+  checksum: 608399038a9d798de675c08d5c31c002b5e0c0734127a679b7dfa6d7cf2510295ba6c9d59a96efdec969ec3585cf164232d46fea09b7dc9fe6c5bd85333743c0
+  languageName: node
+  linkType: hard
+
 "@types/aria-query@npm:^4.2.0":
   version: 4.2.0
   resolution: "@types/aria-query@npm:4.2.0"
@@ -10270,6 +10277,7 @@ __metadata:
     "@storybook/builder-vite": ^0.2.2
     "@storybook/react": ^6.4.17
     "@stylelint/postcss-css-in-js": ^0.37.2
+    "@tsconfig/strictest": ^1.0.1
     "@types/eslint": ^8.4.1
     "@types/jest": ^27.4.0
     "@types/node": ^17.0.13
