@@ -12,9 +12,12 @@
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "npm-run-all --print-name --print-label typecheck clean --parallel \"build:*\"",
-    "build:cjs": "zx ../../misc/bundler.cjs.mjs",
-    "build:esm": "zx ../../misc/bundler.esm.mjs",
+    "analyze": "npm-run-all --parallel --aggregate-output \"analyze:*\"",
+    "analyze:cjs": "zx ../../misc/bundler.mjs --format=cjs --analyze",
+    "analyze:esm": "zx ../../misc/bundler.mjs --format=esm --analyze",
+    "build": "npm-run-all --parallel --aggregate-output \"build:*\"",
+    "build:cjs": "zx ../../misc/bundler.mjs --format=cjs",
+    "build:esm": "zx ../../misc/bundler.mjs --format=esm",
     "build:declaration": "tsc --project tsconfig.build.json --declaration --emitDeclarationOnly",
     "typecheck": "tsc --project tsconfig.build.json --noEmit",
     "clean": "rimraf dist"
