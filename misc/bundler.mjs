@@ -22,8 +22,8 @@ const main = async () => {
 
     bundle: true,
     platform,
-    external: ['../../node_modules/*'],
     sourcemap: true,
+    plugins: [makeAllPackagesExternalPlugin],
 
     minify: isAnalyzeMode,
     keepNames: !isAnalyzeMode,
@@ -35,6 +35,19 @@ const main = async () => {
     const summary = await esbuild.analyzeMetafile(metafile)
     console.log(summary)
   }
+}
+
+/**
+ * A plugin to mark all packages as external so that they are not bundled.
+ * @see https://github.com/evanw/esbuild/issues/619#issuecomment-751995294
+ * @type {esbuild.Plugin}
+ */
+const makeAllPackagesExternalPlugin = {
+  name: 'make-all-packages-external',
+  setup(build) {
+    const filter = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/ // Must not start with "/" or "./" or "../"
+    build.onResolve({ filter }, (args) => ({ path: args.path, external: true }))
+  },
 }
 
 main()
