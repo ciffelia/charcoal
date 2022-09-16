@@ -1,5 +1,4 @@
 {
-  "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["ESNext", "DOM"],
@@ -7,6 +6,10 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    // "noUncheckedIndexedAccess": true
     "paths": {
       "@charcoal-ui/*": ["./packages/*/src"]
     }

@@ -5,13 +5,7 @@ import { argv } from 'zx'
 const esbuild = require('esbuild')
 
 const main = async () => {
-  const format =
-    argv.format === 'esm' || argv.format === 'cjs' ? argv.format : undefined
-  if (format === undefined) {
-    console.error(`Unknown format: ${argv.format}`)
-    process.exit(1)
-  }
-
+  const { format, platform } = argv
   const isAnalyzeMode = argv.analyze === true
 
   const { metafile } = await esbuild.build({
@@ -21,13 +15,13 @@ const main = async () => {
     entryPoints: ['./src/index.ts'],
     outdir: './dist',
     outExtension: {
-      '.js': format === 'esm' ? '.mjs' : '.cjs',
+      '.js': format === 'cjs' ? '.cjs' : '.mjs',
     },
     tsconfig: './tsconfig.build.json',
     format,
 
     bundle: true,
-    platform: 'neutral',
+    platform,
     external: ['../../node_modules/*'],
     sourcemap: true,
 
