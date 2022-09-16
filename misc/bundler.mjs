@@ -26,8 +26,9 @@ const main = async () => {
     sourcemap: true,
 
     minify: isAnalyzeMode,
-    metafile: isAnalyzeMode,
+    keepNames: !isAnalyzeMode,
     write: !isAnalyzeMode,
+    metafile: isAnalyzeMode,
   })
 
   if (isAnalyzeMode && metafile !== undefined) {
