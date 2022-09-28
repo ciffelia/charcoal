@@ -3,18 +3,23 @@
   "version": "1.1.0-alpha.5",
   "license": "Apache-2.0",
   "type": "module",
-  "source": "./src/index.ts",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
+  "module": "./dist/index.mjs",
   "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
+    "import": "./dist/index.mjs",
+    "default": "./dist/index.cjs"
   },
   "types": "./dist/index.d.ts",
   "sideEffects": true,
   "scripts": {
-    "build": "microbundle --compress=false -f modern,esm,cjs --tsconfig tsconfig.build.json",
-    "typecheck": "tsc --noEmit --project tsconfig.build.json",
+    "analyze": "npm-run-all --parallel --aggregate-output \"analyze:*\"",
+    "analyze:cjs": "zx ../../misc/bundler.mjs --format=cjs --analyze",
+    "analyze:esm": "zx ../../misc/bundler.mjs --format=esm --analyze",
+    "build": "npm-run-all --parallel --aggregate-output \"build:*\"",
+    "build:cjs": "zx ../../misc/bundler.mjs --format=cjs",
+    "build:esm": "zx ../../misc/bundler.mjs --format=esm",
+    "build:declaration": "tsc --project tsconfig.build.json --declaration --emitDeclarationOnly",
+    "typecheck": "tsc --project tsconfig.build.json --noEmit",
     "clean": "rimraf dist"
   },
   "devDependencies": {
@@ -22,11 +27,13 @@
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
     "@types/warning": "^3.0.0",
-    "microbundle": "^0.14.2",
+    "esbuild": "^0.15.7",
+    "npm-run-all": "^4.1.5",
     "react": "^17.0.2",
     "rimraf": "^3.0.2",
     "styled-components": "^5.3.3",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "zx": "^7.0.3"
   },
   "dependencies": {
     "dompurify": "^2.3.6",

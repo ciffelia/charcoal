@@ -24,6 +24,9 @@ const main = async () => {
     platform,
     sourcemap: true,
     plugins: [makeAllPackagesExternalPlugin],
+    loader: {
+      '.svg': 'text',
+    },
 
     minify: isAnalyzeMode,
     keepNames: !isAnalyzeMode,
